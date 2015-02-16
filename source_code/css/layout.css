@@ -515,10 +515,9 @@ padding: 15px 10px;
 .tablesorter input[type=image] {
 margin-right: 10px;}
 
-ul.tabs {
+ul.tabs, div.tabs{
 	margin: 3px 10px 0 0;
 	padding: 0;
-	float: right;
 	list-style: none;
 	height: 24px; /*--Set height of tabs--*/
 	-webkit-border-radius: 5px;
@@ -531,13 +530,13 @@ ul.tabs {
 	font-weight: bold;
 	text-shadow: 0 1px 0 #fff;
 }
-ul.tabs li {
+ul.tabs li, div.tabs div {
 	float: left;
 	margin: 0;
 	padding: 0;
 	line-height: 24px;
 }
-ul.tabs li a {
+ul.tabs li a,div.tabs div a {
 	text-decoration: none;
 	color: #999;
 	display: block;
@@ -545,28 +544,28 @@ ul.tabs li a {
 	height: 24px;
 }
 
-ul.tabs li a:hover {
+ul.tabs li a:hover,div.tabs div a:hover {
 	color: #44474F;
 }
 
-html ul.tabs li.active a  {
+html ul.tabs li.active a ,div.tabs div.active a{
 	color: #44474F;
 	}
 
-html ul.tabs li.active, html ul.tabs li.active a:hover  {
+html ul.tabs li.active, html ul.tabs li.active a:hover,div.tabs div.active a:hover, div.tabs div.active  {
 	background: #F1F2F4;
 	-webkit-box-shadow: inset 0 2px 3px #818181;
 	-moz-box-shadow: inset 0 2px 3px #818181;
 	box-shadow: inset 0 2px 3px #818181;
 }
 
-html ul.tabs li:first-child, html ul.tabs li:first-child a  {
+html ul.tabs li:first-child, html ul.tabs li:first-child a, div.tabs div.first-child  {
 	-webkit-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px;
 	-moz-border-radius-topleft: 5px; -moz-border-radius-bottomleft: 5px;
 	border-top-left-radius: 5px; border-bottom-left-radius: 5px;
 }
 
-html ul.tabs li:last-child, html ul.tabs li:last-child a  {
+html ul.tabs li:last-child, html ul.tabs li:last-child a,div.tabs div.last-child {
 	-webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px;
 	-moz-border-radius-topright: 5px; -moz-border-radius-bottomright: 5px;
 	border-top-right-radius: 5px; border-bottom-right-radius: 5px;
