@@ -1,0 +1,60 @@
+<aside id="sidebar" class="column">
+		<form class="quick_search">
+			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+		</form>
+		<hr/>
+		<h3>Team</h3>
+		<ul class="toggle tab" >
+			<li class="icn_view_users"><a href="#team">Performance Analyses</a></li>
+			<li class="icn_view_users"><a href="#">Achievements/Awards</a></li>
+			<li class="icn_view_users"><a href="#">Team Orientation</a></li>
+			<li class="icn_view_users"><a href="#">General Tendency</a></li>
+			<li class="icn_view_users"><a href="#">Fan Following</a></li>
+			<li class="icn_view_users" id="age_group_id"><a href="#age_group">Player age group</a></li>
+		</ul>
+		<h3>Managers</h3>
+		<ul class="toggle tab">
+			<li class="icn_profile" ><a href="#">Loyalty for team</a></li>
+			<li class="icn_profile"><a href="#">Performance of the team</a></li>
+			<li class="icn_profile"><a href="#">Player-manager</a></li>
+			<li class="icn_profile"><a href="#">Age and maturity</a></li>
+			<li class="icn_profile"><a href="#">More...</a></li>
+		</ul>
+		<h3>Players</h3>
+		<ul class="toggle tab">
+			<li class="icn_profile"><a href="#">Physical Attributes</a></li>
+			<li class="icn_profile" id="man"><a href="#players">Player’s origin</a></li>
+			<li class="icn_profile"><a href="#">Age and experience</a></li>
+			<li class="icn_profile"><a href="#">Team and manager</a></li>
+			<li class="icn_profile"><a href="#">More...</a></li>
+		</ul>
+		<h3>Salary</h3>
+		<ul class="toggle tab">
+			<li class="icn_categories" id="link_team_salary"><a href="#salaries">Team</a></li>
+			<li class="icn_categories"><a href="#">Players</a></li>
+			<li class="icn_categories"><a href="#">Manager</a></li>
+		</ul>
+		
+		<footer>
+			<hr />
+			
+		</footer>
+	</aside><!-- end of sidebar -->
+	<script type="text/javascript">
+	$("#man").click(function () {
+ 			  var jsonData = $.ajax({
+	          url: "http://localhost:8888/baseballanalysis_backend/getPlayerOrigin.php",
+	          dataType:"jsonp",
+	          async: false
+	          }).responseText;
+		});
+
+		$("#link_team_salary").click(function () {
+ 			  var jsonData = $.ajax({
+	          url: "http://localhost:8888/baseballanalysis_backend/getSalary.php",
+	          dataType:"jsonp",
+	          async: false
+	          }).responseText;
+		});
+		</script>
+		
