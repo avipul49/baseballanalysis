@@ -5,7 +5,9 @@ baseball_main.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'html/team.html'
+        templateUrl: 'html/team1.html',
+        controller:"team_controller"
+
       }).
       when('/players', {
         templateUrl: 'html/players.html'
