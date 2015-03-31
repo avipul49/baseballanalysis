@@ -1,32 +1,32 @@
-	<div id="team_salary" class="p_content">
+<div id="team_salary" class="p_content" ng-controller="player_salaries_controller">
 
-			<article class="module_content" style="margin:20px 2% 0 3%">
-				<div class="tabs"  style="margin:0px">
-					<div><a href="#player">Players</a></div>
-		   			<div><a href="#Team">Win/loss</a></div>
-				</div>
-			</article>
-
-			<article id="player" class="module width_full tab_content">
-
-				<header>
-						<div style="display:inline" ><h3 style="display:inline-block;width:70%">Player Origins</h3> 
-		 					<div style="display:inline-block;width:15%;margin-top:7px">	
-		 						<select style="width:92%;">
-									<option>2013</option>
-								</select>
-							</div>
-						</div>
-				</header>
-
-				<div class="module_content" >
-
-					<div style="display:inline;margin:10%" >
-						<div ng-include="'html/team_selector.html'"></div>
-				        <div id="core_div" style="width:600px">
-				        	
-				        </div>
-			        </div>
-				</div>
-			</article>
+	<article class="module_content" style="margin:20px 2% 0 3%">
+		<div class="tabs"  style="margin:0px">
+			<div><a href="#player">Players</a></div>
+   			<div><a href="#Team">Win/loss</a></div>
 		</div>
+	</article>
+
+	<article id="player" class="module width_full tab_content">
+
+		<header>
+			<div style="display:inline" ><h3 style="display:inline-block;width:70%">Player salaries</h3> 
+					<div style="display:inline-block;width:15%;margin-top:7px">	
+						<select style="width:92%;">
+						<option>2013</option>
+					</select>
+				</div>
+			</div>
+		</header>
+
+		<div class="module_content" >
+
+			<div style="display:inline;margin:10%" >
+				<div ng-include="'html/team_selector.html'"></div>
+		        <div id="core_div" style="width:600px">
+		        	
+		        </div>
+	        </div>
+		</div>
+	</article>
+</div>

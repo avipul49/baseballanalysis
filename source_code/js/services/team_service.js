@@ -2,9 +2,13 @@ var team_service  = angular.module('team_service', []);
 
 team_service.factory('performance', function($http) {
     return {
-      getMovie: function() {
-      	console.log("vdfvdf");
-        return $http.get('http://localhost:8888/baseballanalysis_backend/getData.php');
+      getTeamPerformances: function() {
+      	var promise = $http.get(global.end_points.base_url+global.end_points.teams.performance);
+      	promise.then(function(data){
+      		console.log("here");
+      		return data;
+      	});
+        return promise;
       }
     }
   });
