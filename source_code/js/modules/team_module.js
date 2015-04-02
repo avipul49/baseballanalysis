@@ -21,25 +21,31 @@ team_module.config(['$routeProvider',
 
 team_module.controller('team_controller', 
     function($log, $scope, performance) {
-      $scope.startYear = "2014";
-      $scope.endYear = "2014";
-      $scope.selectedTeams = [];
-      $scope.onSelectionChange = function(payload,teams,startYear,endYear){
-          $scope.selectedTeams = teams;
-          $scope.startYear = startYear;
-          $scope.endYear = endYear;
-          console.log(teams);
-          console.log(startYear);
-          console.log(endYear);
+      $scope.field = 'wins';
 
-          $scope.data = payload.data;
+      $scope.changeDisplay = function(field){
+        if($scope.payload){
+          console.log(field);
+          $scope.data = parseTeamPerformanceData($scope.payload,$scope.selectedTeams,$scope.startYear,$scope.endYear,field);
+          $scope.field =field;
           if(global.charts_loaded){
             $scope.drawChart();
           }else{
             loadCharts($scope.drawChart);
-          }    
-        //console.log(teams);
-        //$scope.fetchData();
+          } 
+        }   
+      }
+
+      $scope.startYear = "2014";
+      $scope.endYear = "2014";
+      $scope.selectedTeams = [];
+
+      $scope.onSelectionChange = function(payload,teams,startYear,endYear){
+          $scope.selectedTeams = teams;
+          $scope.startYear = startYear;
+          $scope.endYear = endYear;
+          $scope.payload = payload;
+          $scope.changeDisplay($scope.field);
       };
       $scope.fetchDataService = performance.getTeamPerformances;
       $scope.drawChart = function(){

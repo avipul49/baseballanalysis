@@ -21,7 +21,13 @@
 				<div class="module_content" class="toggle" >
 
 					<div ng-include="'html/team_selector.html'"></div>
-
+						<article class="module_content" style="margin:0px 2% 0 3%">
+							<div class="tabs"  style="margin:0px">
+								<div ng-class="field=='wins'?'active':''"><a ng-click="changeDisplay('wins')">Win</a></div>
+								<div ng-class="field=='losses'?'active':''"><a ng-click="changeDisplay('losses')">loss</a></div>
+								<div ng-class="field=='gamesPlayed'?'active':''"><a ng-click="changeDisplay('gamesPlayed')">Games Played</a></div>
+							</div>
+						</article>
 					<article id="chart_div">
 					</article>
 				

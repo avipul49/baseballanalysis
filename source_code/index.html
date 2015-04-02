@@ -21,6 +21,14 @@
 	<script src="js/charts_and_maps.js"></script>
     <script src="js/global.js"></script>
 
+	<script src="js/model/col.js"></script>
+	<script src="js/model/value.js"></script>
+	<script src="js/model/rows.js"></script>
+	<script src="js/model/graphData.js"></script>
+
+	<script src="js/parsers/team_parser.js"></script>
+
+
   	<script src="js/services/team_service.js"></script>
   	<script src="js/services/players_service.js"></script>
   	<script src="js/services/salaries_service.js"></script>
@@ -30,6 +38,7 @@
 	<script src="js/modules/salaries_module.js"></script>
 	<script src="js/modules/filter_module.js"></script>
 
+	
 
 
     <link rel="stylesheet" href="docsupport/style.css">
@@ -38,14 +47,6 @@
     <link rel="stylesheet" href="css/isteven-multi-select.css">
 
     <script type="text/javascript">
-		var config = {
-			'.chosen-select'           : {},
-			'.chosen-select-deselect'  : {allow_single_deselect:true},
-			'.chosen-select-no-single' : {disable_search_threshold:10},
-			'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-			'.chosen-select-width'     : {width:"95%"}
-		}
-
 		$(document).ready(function() { 
 	      	  $(".tablesorter").tablesorter(); 
 	   	});
