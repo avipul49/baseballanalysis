@@ -1,18 +1,27 @@
-<div style="display:inline;margin:10%" >
-	<select data-placeholder="Select league" multiple style="display:inline-block;width:40%" class="chosen-select-no-results">
-	  <option value="american_league">American League</option>
-	  <option value="national_league">National League</option>
-	</select>
+<div style="display:inline;margin:10%" ng-controller="team_filter_controller" >
 
-    <select data-placeholder="Select team" multiple class="chosen-select-no-results" style="display:inline-block;width:40%">
-        <option value=""></option>
-        <option selected>New York Yankees</option>
-        <option>Baltimore </option>
-        <option>Boston red sox</option>
-    </select>
+	<span style="float:left">Select League</span>
+	<div
+		style="margin:10px"
+	    isteven-multi-select
+	    input-model="allLeagues"
+	    output-model="selectedLeagues"
+	    button-label="name"
+	    item-label="name"
+	    tick-property="ticked"
+	    on-item-click="onLeagueChange( data )"
+	>
+	</div>
+	<span>Select team</span>
+	<div
+		style="margin:10px"
+	    isteven-multi-select
+	    input-model="teams"
+	    output-model="selectedTeams"
+	    button-label="name"
+	    item-label="name"
+	    tick-property="ticked"
+	    on-item-click="onChange(selectedTeams)"
+	>
+	</div>
 </div>
-<script type="text/javascript">
-	    for (var selector in config) {
-	      $(selector).chosen(config[selector]);
-	    }
-</script>

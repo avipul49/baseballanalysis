@@ -20,17 +20,23 @@ salariesControllers.config(['$routeProvider',
 
 salariesControllers.controller('player_salaries_controller', 
     function($log, $scope, salary) {
-       $scope.drawChart = function(){
-          drawPieChart($scope.data,'core_div','Salary');
-        }
-        var promise = salary.getPlayerSalaries();
-        promise.then(
-          function(payload) { 
-              console.log(payload.data);
-              $scope.data = payload.data;
-              $scope.drawChart();
-          },
-          function(errorPayload) {
-              $log.error('failure loading movie', errorPayload);
-          });
+      $scope.onSelectionChange = function(payload,teams,startYear,endYear){
+        $scope.selectedTeams = teams;
+        $scope.startYear = startYear;
+        $scope.endYear = endYear;
+        console.log(teams);
+        console.log(startYear);
+        console.log(endYear);
+
+        $scope.data = payload.data;
+        if(global.charts_loaded){
+          $scope.drawChart();
+        }else{
+          loadCharts($scope.drawChart);
+        }    
+      };
+    $scope.fetchDataService = salary.getPlayerSalaries;
+     $scope.drawChart = function(){
+        drawPieChart($scope.data,'core_div','Salary');
+    }
   });

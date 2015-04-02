@@ -4,9 +4,7 @@ playersControllers.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/state', {
-        templateUrl: 'html/players.html',
-        controller:"team_controller"
-
+        templateUrl: 'html/players.html'
       })
       // .
       // when('/city', {
@@ -22,10 +20,39 @@ playersControllers.config(['$routeProvider',
 
 playersControllers.controller('player_origin_controller', 
     function($log, $scope, origin) {
+
+      $scope.startYear = "2014";
+      $scope.endYear = "2014";
+      $scope.selectedTeams = [];
+      $scope.onSelectionChange = function(payload,teams,startYear,endYear){
+          $scope.selectedTeams = teams;
+          $scope.startYear = startYear;
+          $scope.endYear = endYear;
+          console.log(teams);
+          console.log(startYear);
+          console.log(endYear);
+
+          $scope.data = payload.data;
+          if(global.charts_loaded){
+            $scope.drawChart();
+          }else{
+            loadCharts($scope.drawChart);
+          }    
+        //console.log(teams);
+        //$scope.fetchData();
+      };
+      $scope.fetchDataService = origin.getPlayerOrigin;
       $scope.drawChart = function(){
         drawMap($scope.data,'geo_div','Player origin');
       }
-      var promise = origin.getPlayerOrigin();
+  });
+
+playersControllers.controller('player_perfromace_controller', 
+    function($log, $scope, origin) {
+      $scope.drawChart = function(){
+        drawMap($scope.data,'geo_div','Player origin');
+      }
+      var promise = origin.getPlayerPerformace();
       promise.then(
         function(payload) { 
             console.log(payload.data);

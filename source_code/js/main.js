@@ -1,13 +1,11 @@
 var baseball_main = angular.module('baseball_main', [
-  'ngRoute','homeControllers','players_controller','salaries_controller']);
+  'ngRoute','team_module','players_controller','salaries_controller','filter_module','isteven-multi-select']);
 
 baseball_main.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/team', {
-        templateUrl: 'html/team1.html',
-        controller:"team_controller"
-
+        templateUrl: 'html/team1.html'
       }).
       when('/players', {
         templateUrl: 'html/players.html'

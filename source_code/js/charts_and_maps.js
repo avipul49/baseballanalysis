@@ -5,7 +5,6 @@ function loadCharts(drawChart){
 
 function drawLineChart(jsonData,element,title){
 	var data = new google.visualization.DataTable(jsonData);
-	console.log(data);
 	var chart = new google.visualization.LineChart(document.getElementById(element));
 
 	var options = {
@@ -26,7 +25,6 @@ function drawTable(jsonData,element){
 
 function drawPieChart(jsonData,element,title){
 	var data = new google.visualization.DataTable(jsonData);
-	console.log(data);
 	var geo = new google.visualization.PieChart(document.getElementById(element));
 
 	var options = {
@@ -41,7 +39,6 @@ function drawPieChart(jsonData,element,title){
 
 function drawMap(jsonData,element,title){
 	var data = new google.visualization.DataTable(jsonData);
-	console.log(data);
 	var geo = new google.visualization.GeoChart(document.getElementById(element));
 
 	var options = {

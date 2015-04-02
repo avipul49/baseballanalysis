@@ -5,11 +5,14 @@ var global = {
 			performance:"getData.php"
 		},
 		players:{
-			origin : "getPlayerOrigin.php"
+			origin : "getPlayerOrigin.php",
+			batting_performace : "getPlayerPerfromace.php"
 		},
 		salaries:{
 			players : "getSalary.php"
 		}
 	},
-	charts_loaded:false
+	charts_loaded:false,
+	leagues:[{name:'a'},{name:'b'}],
+	teams:[{name:'ta1',league:'a'},{name:'ta2',league:'a'},{name:'tb1',league:'b'},{name:'tb2',league:'b'}]
 };

@@ -1,6 +1,6 @@
-var homeControllers = angular.module('homeControllers', ["team_service"]);
+var team_module = angular.module('team_module', ["team_service"]);
 
-homeControllers.config(['$routeProvider',
+team_module.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/team_win_loss', {
@@ -19,24 +19,32 @@ homeControllers.config(['$routeProvider',
   }]);
 
 
-homeControllers.controller('team_controller', 
+team_module.controller('team_controller', 
     function($log, $scope, performance) {
-      $scope.drawChart = function(){
-        drawLineChart($scope.data,'chart_div','Team performance');
-        drawTable($scope.data,'table_div');
-      }
-      var promise = performance.getTeamPerformances();
-      promise.then(
-        function(payload) { 
+      $scope.startYear = "2014";
+      $scope.endYear = "2014";
+      $scope.selectedTeams = [];
+      $scope.onSelectionChange = function(payload,teams,startYear,endYear){
+          $scope.selectedTeams = teams;
+          $scope.startYear = startYear;
+          $scope.endYear = endYear;
+          console.log(teams);
+          console.log(startYear);
+          console.log(endYear);
+
           $scope.data = payload.data;
           if(global.charts_loaded){
             $scope.drawChart();
           }else{
             loadCharts($scope.drawChart);
-          }         
-        },
-        function(errorPayload) {
-            $log.error('failure loading movie', errorPayload);
-        });  
+          }    
+        //console.log(teams);
+        //$scope.fetchData();
+      };
+      $scope.fetchDataService = performance.getTeamPerformances;
+      $scope.drawChart = function(){
+        drawLineChart($scope.data,'chart_div','Team performance');
+        drawTable($scope.data,'table_div');
+      }
   });
 
