@@ -20,7 +20,7 @@ team_module.config(['$routeProvider',
 
 
 team_module.controller('team_controller', 
-    function($log, $scope, performance) {
+    function($log, $scope, performance,$location) {
       $scope.field = 'wins';
 
       $scope.changeDisplay = function(field){
@@ -35,9 +35,21 @@ team_module.controller('team_controller',
           } 
         }   
       }
+      if(global.query){
+        $location.search(global.query);
+      }
+      var query = $location.search();
+      if(query.endYear){
+        $scope.endYear = parseInt(query.endYear);
+      }else{
+        $scope.endYear = 2014
+      }
+      if(query.startYear){
+        $scope.startYear = parseInt(query.startYear);
+      }else{
+        $scope.startYear = 2014
+      }
 
-      $scope.startYear = "2014";
-      $scope.endYear = "2014";
       $scope.selectedTeams = [];
 
       $scope.onSelectionChange = function(payload,teams,startYear,endYear){

@@ -1,19 +1,25 @@
 var filterModule = angular.module('filter_module', []);
 
-function fetchData($scope){
-  var teamids = [];
-  if($scope.selectedTeams[0]){
-    for(var team in $scope.selectedTeams){
-      var currentTeam = $scope.selectedTeams[team];
+function getTeamIds(teams){
+   var teamids = [];
+    for(var team in teams){
+      var currentTeam = teams[team];
       teamids.push(currentTeam.teamId);
     }
+    return teamids;
+}
+
+function fetchData($scope,$location){
+  global.query = $location.search();
+  if($scope.selectedTeams[0]){
+    var teamids = getTeamIds($scope.selectedTeams);
     var promise = $scope.fetchDataService(teamids,$scope.startYear,$scope.endYear);
     promise.then(
     function(payload) { 
       $scope.onSelectionChange(payload,$scope.selectedTeams,$scope.startYear,$scope.endYear);        
     },
     function(errorPayload) {
-        $log.error('failure loading ', errorPayload);
+        console.log('failure loading '+errorPayload);
     }); 
     console.log($scope.selectedLeagues);
   }
@@ -32,11 +38,18 @@ filterModule.directive('myRepeatDirective', function() {
 });
 
 filterModule.controller('team_filter_controller', 
-  function($scope) {
+  function($scope,$location) {
+
+    console.log($location.search());
+    $scope.queryTeams = $location.search().teams;
     $scope.allLeagues=global.leagues;
-    $scope.onLeagueChange = function( data ) {  
+    $scope.selectedTeams = [];
+    $scope.selectedLeagues = global.leagues;
+    $scope.onLeagueChange = function() {  
+        $scope.queryTeams = $location.search().teams;
         var teams = [];
         var i=0;
+        $scope.selectedTeams = [];
         for(var team in global.teams){
           var currentTeam = global.teams[team];
           var found = false;
@@ -48,19 +61,32 @@ filterModule.controller('team_filter_controller',
           }
           if(found){
             teams[i] = global.teams[team];
+            if($scope.queryTeams){
+              if($scope.queryTeams.indexOf(teams[i].teamId)>-1){
+                teams[i].ticked = true;
+                $scope.selectedTeams.push(teams[i]);
+              }
+            }
             i++;
+          }else{
+            global.teams[team].ticked = false;
           }
         }
         $scope.teams = teams;
+        $scope.onChange($scope.selectedTeams);
     }  
     console.log("filter");
     $scope.onChange = function(teams){
+      $location.search('teams',getTeamIds(teams));
       $scope.selectedTeams = teams;
-      fetchData($scope);
+      fetchData($scope,$location);
     }
+    $scope.onLeagueChange();
+    //$scope.onChange($scope.selectedTeams);
   });
 filterModule.controller('year_filter_controller', 
-  function($scope) {
+  function($scope,$location) {
+    
       $scope.startYearRange = [];
       for(var i=2014;i>1960;i--) {
         $scope.startYearRange.push(i);
@@ -69,10 +95,11 @@ filterModule.controller('year_filter_controller',
 
       $scope.startYearChange = function(){
         updateEndDateRange();
-        fetchData($scope);
+        fetchData($scope,$location);
       };
       $scope.endYearChange = function(){
-        fetchData($scope);
+        $location.search('endYear',$scope.endYear);
+        fetchData($scope,$location);
       };
       function updateEndDateRange(){
         if($scope.endYear<$scope.startYear)
@@ -82,6 +109,20 @@ filterModule.controller('year_filter_controller',
           range.push(i);
         }
         $scope.endYearRange = range;
+        $location.search('startYear',$scope.startYear);
+        $location.search('endYear',$scope.endYear);
       }
+      var query = $location.search();
+      if(query.endYear){
+        $scope.endYear = parseInt(query.endYear);
+      }else{
+        $scope.endYear = $scope.endYearRange[0]
+      }
+      if(query.startYear){
+        $scope.startYear = parseInt(query.startYear);
+      }else{
+        $scope.startYear = $scope.startYearRange[0]
+      }
+      updateEndDateRange();
   });
 

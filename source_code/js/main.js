@@ -5,18 +5,18 @@ baseball_main.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/team', {
-        templateUrl: 'html/team1.html'
+        templateUrl: 'html/team1.html',
+        reloadOnSearch: false
       }).
       when('/players', {
-        templateUrl: 'html/players.html'
+        templateUrl: 'html/players.html',
+        reloadOnSearch: false
       }).
       when('/salaries', {
-        templateUrl: 'html/salaries.html'
-      }).
-      when('/support', {
-        templateUrl: 'html/support.html'
-      }).
-      when('/blogs', {
-        templateUrl: 'html/blogs.html'
+        templateUrl: 'html/salaries.html',
+        reloadOnSearch: false
       })
   }]);
+
+
+

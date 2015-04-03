@@ -19,19 +19,27 @@ playersControllers.config(['$routeProvider',
   }]);
 
 playersControllers.controller('player_origin_controller', 
-    function($log, $scope, origin) {
+    function($log, $scope, origin,$location) {
 
-      $scope.startYear = "2014";
-      $scope.endYear = "2014";
+      if(global.query){
+        $location.search(global.query);
+      }
+      var query = $location.search();
+      if(query.endYear){
+        $scope.endYear = parseInt(query.endYear);
+      }else{
+        $scope.endYear = 2014
+      }
+      if(query.startYear){
+        $scope.startYear = parseInt(query.startYear);
+      }else{
+        $scope.startYear = 2014
+      }
       $scope.selectedTeams = [];
       $scope.onSelectionChange = function(payload,teams,startYear,endYear){
           $scope.selectedTeams = teams;
           $scope.startYear = startYear;
           $scope.endYear = endYear;
-          console.log(teams);
-          console.log(startYear);
-          console.log(endYear);
-
           $scope.data = payload.data;
           if(global.charts_loaded){
             $scope.drawChart();
@@ -60,6 +68,6 @@ playersControllers.controller('player_perfromace_controller',
             $scope.drawChart();
         },
         function(errorPayload) {
-            $log.error('failure loading movie', errorPayload);
+            console.log('failure loading movie'+errorPayload);
         });
   });

@@ -25,3 +25,23 @@ function parseTeamPerformanceData(payload,teams,startYear,endYear,field){
   console.log(finalData);
   return finalData;
 }
+
+
+function parseSalaryData(payload){
+  var cols=[];
+  cols.push(new col('string','playerid'));
+  cols.push(new col('number','salary'));
+  
+  var playerSalaries = payload;
+  var allrows = [];
+  for(var salary in playerSalaries){
+    var currentSalary = playerSalaries[salary];
+    var c = [];
+    c.push(new v(currentSalary.playerid));
+    c.push(new v(currentSalary.salary));
+    allrows.push(new rows(c));
+  }
+  var finalData = new graphData(cols,allrows);
+  console.log(finalData);
+  return finalData;
+}
