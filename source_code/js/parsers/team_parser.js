@@ -22,17 +22,15 @@ function parseTeamPerformanceData(payload,teams,startYear,endYear,field){
   }
   allrows.push(new rows(c));
   var finalData = new graphData(cols,allrows);
-  console.log(finalData);
   return finalData;
 }
-
 
 function parseSalaryData(payload){
   var cols=[];
   cols.push(new col('string','playerid'));
   cols.push(new col('number','salary'));
   
-  var playerSalaries = payload;
+  var playerSalaries = payload.data;
   var allrows = [];
   for(var salary in playerSalaries){
     var currentSalary = playerSalaries[salary];
@@ -43,5 +41,17 @@ function parseSalaryData(payload){
   }
   var finalData = new graphData(cols,allrows);
   console.log(finalData);
+  return finalData;
+}
+
+function parseTeamOrientationData(payload,selectedTeams,field1,field2,label1,label2){
+  var finalData = [];
+  var cols = ['Team',label1,label2];
+  finalData.push(cols);
+  var teams = payload.data;
+  for(var team in teams){
+    var currentTeam = teams[team];
+    finalData.push([currentTeam.teamId,currentTeam[field1],currentTeam[field2]]);
+  }
   return finalData;
 }

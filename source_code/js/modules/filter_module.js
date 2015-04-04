@@ -65,6 +65,8 @@ filterModule.controller('team_filter_controller',
               if($scope.queryTeams.indexOf(teams[i].teamId)>-1){
                 teams[i].ticked = true;
                 $scope.selectedTeams.push(teams[i]);
+              }else{
+                global.teams[team].ticked = false;
               }
             }
             i++;

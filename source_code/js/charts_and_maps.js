@@ -1,5 +1,5 @@
 function loadCharts(drawChart){
-	google.load('visualization', '1', {'packages':['corechart','table','geochart'],"callback": drawChart});
+	google.load('visualization', '1', {'packages':['corechart','table','geochart','bar'],"callback": drawChart});
 	google.setOnLoadCallback(drawChart);
 }
 
@@ -15,6 +15,28 @@ function drawLineChart(jsonData,element,title){
 		height: 500,
 	};
 	chart.draw(data, options);
+}
+
+function drawBarChart(jsonData,element,title,subtitle){
+	var data = new google.visualization.arrayToDataTable(jsonData);
+	//var chart = new google.visualization.LineChart(document.getElementById(element));
+
+
+	var options = {
+      chart: {
+		title: title,
+		curveType: 'function',
+		legend: { position: 'bottom' },
+		width: '100%',
+		subtitle: subtitle
+      },
+      bars: 'horizontal' // Required for Material Bar Charts.
+    };
+
+     var chart = new google.charts.Bar(document.getElementById(element));
+
+        chart.draw(data, options);
+
 }
 
 function drawTable(jsonData,element){
