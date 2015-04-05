@@ -1,11 +1,12 @@
 <div id="team" class="p_content" ng-controller="widget_controller">
-	<article class="module_content" style="margin:20px 2% 0 3%">
+	<article ng-if="categories[0]" class="module_content" style="margin:20px 2% 0 3%">
 		<div class="tabs"  style="margin:0px">
 			<div ng-repeat="category in categories">
 				<div  ng-class="category.active?'active':''"><a href="#{{category.link}}" >{{category.label}}</a></div>
 			</div>
 		</div>
 	</article>
+	<h4 class="alert_info">Keep an eye on this space for interesing records</h4>
 	<div class="tab_container" >
 		<div class="tab_content">
 			<article class="module width_full">

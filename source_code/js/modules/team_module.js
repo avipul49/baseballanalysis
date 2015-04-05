@@ -149,6 +149,6 @@ team_module.controller('team_pitching_controller',
         console.log($scope.data);
         var subTitle = $scope.field == 1? 'Batting and Pitching stats in selected year span':'Batting and Pitching rank in selected year span';
         drawBarChart($scope.data,'chart_div',$scope.title,subTitle);
-        drawTable($scope.data,'table_div');
+        drawTableWithArray($scope.data,'table_div');
       }
   });

@@ -27,7 +27,8 @@ function drawBarChart(jsonData,element,title,subtitle){
 		title: title,
 		curveType: 'function',
 		legend: { position: 'bottom' },
-		width: '100%',
+		width: '100',
+		height: '8000',
 		subtitle: subtitle
       },
       bars: 'horizontal' // Required for Material Bar Charts.
@@ -45,8 +46,29 @@ function drawTable(jsonData,element){
 	table.draw(data, { width: '100%',height: 500});
 }
 
+function drawTableWithArray(jsonData,element){
+	var data = new google.visualization.arrayToDataTable(jsonData);
+	var table = new google.visualization.Table(document.getElementById(element));
+	table.draw(data, { width: '100%',height: 500});
+}
+
 function drawPieChart(jsonData,element,title){
 	var data = new google.visualization.DataTable(jsonData);
+	var geo = new google.visualization.PieChart(document.getElementById(element));
+
+	var options = {
+		title: title,
+		legend: { position: 'right' },
+		width: '100%',
+		height:500,
+		pieHole: 0.4,
+	};
+	geo.draw(data, options);
+}
+
+
+function drawPieChartWithArray(jsonData,element,title){
+	var data = new google.visualization.arrayToDataTable(jsonData);
 	var geo = new google.visualization.PieChart(document.getElementById(element));
 
 	var options = {

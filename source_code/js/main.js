@@ -1,5 +1,12 @@
 var baseball_main = angular.module('baseball_main', [
-  'ngRoute','team_module','players_controller','salaries_controller','filter_module','isteven-multi-select','widget_module']);
+  'ngRoute',
+  'team_module',
+  'players_controller',
+  'salaries_controller',
+  'filter_module',
+  'isteven-multi-select',
+  'widget_module',
+  'team_tendency_module']);
 
 baseball_main.config(['$routeProvider',
   function($routeProvider) {
