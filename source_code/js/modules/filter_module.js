@@ -83,6 +83,9 @@ filterModule.controller('team_filter_controller',
       $scope.selectedTeams = teams;
       fetchData($scope,$location);
     }
+    $scope.$watch($scope.selectedTeams,function(){
+      $scope.onChange($scope.selectedTeams);
+    });
     $scope.onLeagueChange();
     //$scope.onChange($scope.selectedTeams);
   });
@@ -128,3 +131,29 @@ filterModule.controller('year_filter_controller',
       updateEndDateRange();
   });
 
+filterModule.controller('person_filter_controller', 
+  function($scope,$location,$timeout) {
+    $scope.loading = false;
+    $scope.onSearchChange = function(data){
+      if(!$scope.loading && data.keyword.length>=3){
+        $scope.loading = true;
+        $timeout(function(){
+          var promise = $scope.fetchSearchDataService(data.keyword,$scope.startYear,$scope.endYear);
+          promise.then(
+          function(payload) { 
+            $scope.loading = false;
+            $scope.players = $scope.selectedPlayers.concat(payload.data);
+            console.log(payload);        
+          },
+          function(errorPayload) {
+              console.log('failure loading '+errorPayload);
+          }); 
+        }, 300);
+      }
+      console.log(data);
+    };
+    $scope.onChange = function(){
+      console.log($scope.selectedPlayers);
+
+    }
+  });

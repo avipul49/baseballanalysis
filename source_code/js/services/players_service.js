@@ -10,12 +10,22 @@ players_service.factory('origin', function($http) {
       	});
         return promise;
       },
-      getPlayerPerformace: function(){
-        var promise = $http.get(global.end_points.base_url+global.end_points.players.batting_performace);
-        promise.then(function(data){
-          console.log("here");
-          return data;
-        });
+      getPlayerBirthCountryStats: function(teams,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.player_birth_country_stats+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+       
+        return promise; 
+      },
+      getPlayerBirthStateStats: function(teams,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.player_birth_state_stats+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+       
+        return promise; 
+      },
+      getPlayerBirthCityStats: function(teams,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.player_birth_city_stats+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+      
         return promise; 
       }
     }

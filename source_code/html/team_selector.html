@@ -6,10 +6,14 @@
 	    isteven-multi-select
 	    input-model="allLeagues"
 	    output-model="selectedLeagues"
-	    button-label="name"
-	    item-label="name"
+	    button-label="icon name"
+	    item-label="icon name"
 	    tick-property="ticked"
 	    on-item-click="onLeagueChange()"
+	    on-select-all="onLeagueChange()"
+    	on-select-none="onLeagueChange()"
+    	on-reset="onLeagueChange()"
+    	on-clear="onLeagueChange()"
 	>
 	</div>
 	<span>Select team</span>
@@ -22,6 +26,10 @@
 	    item-label="icon name"
 	    tick-property="ticked"
 	    on-item-click="onChange(selectedTeams)"
+	    on-select-all="onChange(selectedTeams)"
+    	on-select-none="onChange(selectedTeams)"
+    	on-reset="onChange(selectedTeams)"
+    	on-clear="onChange(selectedTeams)"
 	>
 	</div>
 </div>

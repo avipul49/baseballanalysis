@@ -2,7 +2,9 @@ var team_module = angular.module('widget_module', ["team_service"]);
 
 team_module.controller('widget_controller', 
     function($log, $scope, performance,$location) {
-
+      if(!$scope.selector){
+        $scope.selector = 'team';
+      }
       $scope.changeDisplay = function(field){
         if($scope.payload){
           console.log(field);

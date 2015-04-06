@@ -19,11 +19,6 @@ baseball_main.config(['$routeProvider',
       when('/players', {
         templateUrl: 'html/players.html',
         reloadOnSearch: false
-      }).
-      when('/team_salary', {
-        templateUrl: 'html/widget.html',
-        controller : 'player_salaries_controller',
-        reloadOnSearch: false
       }).when('/team_orientation', {
         templateUrl: 'html/widget.html',
         controller : 'team_orientation_controller',

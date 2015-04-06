@@ -18,11 +18,10 @@ team_tendency_module.config(['$routeProvider',
 
 team_tendency_module.controller('team_tendency_controller', 
     function($log, $scope, performance,$location) {
-      $scope.categories = [{link:'team_tendency_module',label:'Playeing Style',active:true},
+      $scope.categories = [{link:'team_tendency_module',label:'Playing Style',active:true},
                           ];
       $scope.fields = [{field:'battingStyle',label:'Batting',active:true},
                           {field:'throwingStyle',label:'Pitching'}];
-
       $scope.field = 'battingStyle';
       $scope.title = 'Playing style';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){

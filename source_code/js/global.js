@@ -1,6 +1,7 @@
 var global = {
 	end_points:{
 		base_url:"http://localhost:8080/",
+		player_search : "searchPlayer",
 		teams:{
 			performance:"getTeamPerformance",
 			orientation:"getTeamOrientation",
@@ -8,14 +9,17 @@ var global = {
 		},
 		players:{
 			origin : "getPlayerOrigin",
-			batting_performace : "getPlayerPerfromace.php"
+			player_birth_country_stats : "getPlayerBirthCountryStats",
+			player_birth_state_stats : "getPlayerBirthStateStats",
+			player_birth_city_stats : "getPlayerBirthCityStats"
 		},
 		salaries:{
 			players : "getPlayerSalaries"
 		}
 	},
 	charts_loaded:false,
-	leagues:[{name:'National League',lgId:'NL',ticked:true},{name:'American League',lgId:'AL',ticked:true}],
+	leagues:[{icon:'<img src="images/team_logos/nl.png"/>',name:'National League',lgId:'NL',ticked:true},
+			{icon:'<img src="images/team_logos/al.png"/>',name:'American League',lgId:'AL',ticked:true}],
 	teams:[
 		{icon:'<img src="images/team_logos/Toronto_Blue_Jays.svg"/>',teamId:'TOR',	lgId:'AL',	name:'Toronto Blue Jays'},
 		{icon:'<img src="images/team_logos/Milwaukee_Brewers_Logo.svg"/>',teamId:'MIL',	lgId:'NL',	name:'Milwaukee Brewers'},

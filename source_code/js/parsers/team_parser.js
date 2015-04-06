@@ -79,3 +79,18 @@ function parseTeamPlayingStyleData(payload,field){
   finalData.push(['Both',b]);
   return finalData;
 }
+
+function parsePlayerOriginData(payload,field){
+  var cols=[];
+  cols.push(new col('string',field));
+  cols.push(new col('number','Number of players'));
+  
+  var playerOrigin = payload.data;
+  var finalData = [];
+  finalData.push(cols);
+  for(var origin in playerOrigin){
+    var currentOrigin = playerOrigin[origin];
+    finalData.push([currentOrigin.name,currentOrigin.value]);
+  }
+  return finalData;
+ }
