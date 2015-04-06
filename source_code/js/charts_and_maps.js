@@ -21,27 +21,24 @@ function drawLineChart(jsonData,element,title){
 	chart.draw(data, options);
 }
 
-function drawBarChart(jsonData,element,title,subtitle){
+function drawBarChart(jsonData,element,title,subtitle,orientation){
 	var data = new google.visualization.arrayToDataTable(jsonData);
+	if(!orientation)
+		orientation = 'horizontal';
 	//var chart = new google.visualization.LineChart(document.getElementById(element));
-
-
 	var options = {
-      chart: {
-		title: title,
-		curveType: 'function',
-		legend: { position: 'bottom' },
-		width: '100',
-		height: '8000',
-		subtitle: subtitle
-      },
-      bars: 'horizontal' // Required for Material Bar Charts.
+		chart: {
+			title: title,
+			curveType: 'function',
+			legend: { position: 'bottom' },
+			subtitle: subtitle
+		},
+    	width: '100%',
+		height: 400,
+      bars: orientation // Required for Material Bar Charts.
     };
-
-     var chart = new google.charts.Bar(document.getElementById(element));
-
-        chart.draw(data, options);
-
+    var chart = new google.charts.Bar(document.getElementById(element));
+    chart.draw(data, options);
 }
 
 function drawTable(jsonData,element){

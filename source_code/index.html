@@ -51,13 +51,7 @@
 		$(document).ready(function() { 
 	      	  $(".tablesorter").tablesorter(); 
 	   	});
-		$(document).ready(function() {
-			google.load('visualization', '1', {'packages':['corechart','table','geochart'],"callback": drawChart});
-		    google.setOnLoadCallback(drawChart);
-		    function drawChart() {
-		      global.charts_loaded = true;
-		    }
-		});
+	
 
 	    $(function(){
 	        $('.column').equalHeight();

@@ -153,7 +153,24 @@ filterModule.controller('person_filter_controller',
       console.log(data);
     };
     $scope.onChange = function(){
-      console.log($scope.selectedPlayers);
+        var playerid = $scope.selectedPlayers[0].playerId;
+        $location.search().playerid = playerid;
+        global.query = $location.search();
+        var promise = $scope.fetchDataService(playerid,$scope.startYear,$scope.endYear);
 
+        promise.then(
+        function(payload) { 
+          $scope.onSelectionChange(payload,$scope.selectedPlayers,$scope.startYear,$scope.endYear);        
+        },
+        function(errorPayload) {
+            console.log('failure loading '+errorPayload);
+        }); 
+        console.log($scope.selectedPlayers);
+    }
+    var query = $location.search();
+    if(query.playerid){
+      $scope.selectedPlayers = [];
+      $scope.selectedPlayers.push(query.playerid);
+      //$scope.onChange();
     }
   });

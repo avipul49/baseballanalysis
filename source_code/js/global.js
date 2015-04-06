@@ -14,7 +14,8 @@ var global = {
 			player_birth_city_stats : "getPlayerBirthCityStats"
 		},
 		salaries:{
-			players : "getPlayerSalaries"
+			players : "getPlayerSalaries",
+			playerSalaries: "getPlayerSalariesOverTheYears"
 		}
 	},
 	charts_loaded:false,

@@ -47,20 +47,22 @@ salariesControllers.controller('player_salaries_controller',
     function($log, $scope, salary, $location) {
       $scope.selector = 'person'
       $scope.fetchSearchDataService = salary.searchPlayer;
-      $scope.categories = [{link:'team_salary',label:'Players',active:true},
-                          {link:'salary_win_loss',label:'Win/loss'}];
-      $scope.fields = [];
+      $scope.categories = [];
+      $scope.fields = [{field:'yearId',label:'Year',active:true},
+                        {field:'teamId',label:'Teams'}
+                        ];
 
-      $scope.field = '';
+      $scope.field = 'yearId';
       $scope.title='Player salaries';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
-        $scope.data = parseSalaryData(payload);
+        $scope.field = field;
+        $scope.data = parsePlayerSalaryData(payload,$scope.field);
       };
 
-      $scope.fetchDataService = salary.getPlayerSalaries;
+      $scope.fetchDataService = salary.getPlayerSalariesOverTheYears;
       $scope.drawChart = function(){
-        drawPieChart($scope.data,'chart_div','Salary');
-        drawTable($scope.data,'table_div');
+        drawBarChart($scope.data,'chart_div','Salary','','vertical');
+        drawTableWithArray($scope.data,'table_div');
       }
   });

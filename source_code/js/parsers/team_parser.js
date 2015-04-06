@@ -94,3 +94,15 @@ function parsePlayerOriginData(payload,field){
   }
   return finalData;
  }
+
+ function parsePlayerSalaryData(payload,field,label){
+  var finalData = [];
+  var cols = [field,'Salary'];
+  finalData.push(cols);
+  var teams = payload.data;
+  for(var team in teams){
+    var currentTeam = teams[team];
+    finalData.push([''+currentTeam[field],currentTeam.salary]);
+  }
+  return finalData;
+}
