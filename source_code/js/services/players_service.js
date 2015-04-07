@@ -27,6 +27,17 @@ players_service.factory('origin', function($http) {
           '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
       
         return promise; 
+      },
+      getPlayerWeightGroup: function(teams,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.player_weight_group+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
+      },
+      getPlayerHeightGroup: function(teams,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.player_height_group+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
       }
+
     }
   });

@@ -11,7 +11,9 @@ var global = {
 			origin : "getPlayerOrigin",
 			player_birth_country_stats : "getPlayerBirthCountryStats",
 			player_birth_state_stats : "getPlayerBirthStateStats",
-			player_birth_city_stats : "getPlayerBirthCityStats"
+			player_birth_city_stats : "getPlayerBirthCityStats",
+			player_weight_group : "getPlayerWeightGroup",
+			player_height_group : "getPlayerHeightGroup"
 		},
 		salaries:{
 			players : "getPlayerSalaries",
