@@ -27,6 +27,16 @@ playersControllers.config(['$routeProvider',
         templateUrl: 'html/widget.html',
         controller : 'player_height_group_controller',
         reloadOnSearch: false
+      }).
+      when('/physical_attributes_batting_weight', {
+        templateUrl: 'html/widget.html',
+        controller : 'player_batting_weight_group_controller',
+        reloadOnSearch: false
+      }).
+      when('/physical_attributes_batting_height', {
+        templateUrl: 'html/widget.html',
+        controller : 'player_batting_height_group_controller',
+        reloadOnSearch: false
       })
       // .
       // when('/city', {
@@ -91,14 +101,17 @@ playersControllers.controller('player_physical_attributes_controller',
       }
   });
 
-playersControllers.controller('player_weight_group_controller', 
+playersControllers.controller('player_batting_weight_group_controller', 
     function($log, $scope, origin,$location) {
-      $scope.categories = [{link:'physical_attributes_weight',label:'Weight',active:true},
-                          {link:'physical_attributes_height',label:'Height'}];
-      $scope.fields = [];
+      $scope.categories = [{link:'physical_attributes_batting_weight',label:'Batting weight group',active:true},
+                          {link:'physical_attributes_batting_height',label:'Batting height group'}];
+      $scope.fields = [{field:0,label:'Players'},
+      {field:1,label:'Runs'},
+      {field:2,label:'Homeruns'}];
+      $scope.field = 0;
       $scope.title = 'Player weight group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerOriginData(payload,'Weight');
+        $scope.data = parsePlayerAttributeData(payload,'Weight',field,$scope.fields[$scope.field].label);
       };
       $scope.fetchDataService = origin.getPlayerWeightGroup;
       $scope.drawChart = function(){
@@ -108,14 +121,17 @@ playersControllers.controller('player_weight_group_controller',
       }
   });
 
-playersControllers.controller('player_height_group_controller', 
+playersControllers.controller('player_batting_height_group_controller', 
     function($log, $scope, origin,$location) {
-      $scope.categories = [{link:'physical_attributes_weight',label:'Weight'},
-                          {link:'physical_attributes_height',label:'Height',active:true}];
-      $scope.fields = [];
+        $scope.categories = [{link:'physical_attributes_batting_weight',label:'Batting weight group'},
+                          {link:'physical_attributes_batting_height',label:'Batting height group',active:true}];
+      $scope.fields = [{field:0,label:'Players'},
+      {field:1,label:'Runs'},
+      {field:2,label:'Homeruns'}];
+      $scope.field = 0;
       $scope.title = 'Player height group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerOriginData(payload,'Height');
+        $scope.data = parsePlayerAttributeData(payload,'Height',field,$scope.fields[$scope.field].label);
       };
       $scope.fetchDataService = origin.getPlayerHeightGroup;
       $scope.drawChart = function(){

@@ -106,3 +106,15 @@ function parsePlayerOriginData(payload,field){
   }
   return finalData;
 }
+
+function parsePlayerAttributeData(payload,group,field,label){
+  
+  var playerOrigin = payload.data;
+  var finalData = [];
+  finalData.push([group,label]);
+  for(var origin in playerOrigin){
+    var currentOrigin = playerOrigin[origin];
+    finalData.push([currentOrigin.name,currentOrigin.values[field]]);
+  }
+  return finalData;
+ }
