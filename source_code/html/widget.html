@@ -6,7 +6,9 @@
 			</div>
 		</div>
 	</article>
-	<h4 class="alert_info">Keep an eye on this space for interesing records</h4>
+	<div ng-controller="records_controller">
+		<h4 class="alert_info"><span ng-bind-html="text"></span><span style="float:right"><img ng-click="getNextRecord()" style="margin-top: -7px;margin-right: 7px;"src="images/right_arrow.svg"/></span></h4>
+	</div>
 	<div class="tab_container" >
 		<div class="tab_content">
 			<article class="module width_full">

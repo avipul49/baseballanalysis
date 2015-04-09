@@ -2,6 +2,7 @@ var global = {
 	end_points:{
 		base_url:"http://localhost:8080/",
 		player_search : "searchPlayer",
+		records : "getNextRecord",
 		teams:{
 			performance:"getTeamPerformance",
 			orientation:"getTeamOrientation",
@@ -13,7 +14,9 @@ var global = {
 			player_birth_state_stats : "getPlayerBirthStateStats",
 			player_birth_city_stats : "getPlayerBirthCityStats",
 			player_weight_group : "getPlayerWeightGroup",
-			player_height_group : "getPlayerHeightGroup"
+			player_height_group : "getPlayerHeightGroup",
+			pitching_weight_group : "getPitchingWeightGroup",
+			pitching_height_group : "getPitchingHeightGroup"
 		},
 		salaries:{
 			players : "getPlayerSalaries",

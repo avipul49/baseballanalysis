@@ -1,4 +1,4 @@
-var team_module = angular.module('widget_module', ["team_service"]);
+var team_module = angular.module('widget_module', ["team_service","records_service"]);
 
 team_module.controller('widget_controller', 
     function($log, $scope, performance,$location) {
@@ -42,5 +42,26 @@ team_module.controller('widget_controller',
           $scope.changeDisplay($scope.field);
       };
     
+  });
+
+team_module.controller('records_controller', 
+    function($log, $scope, records,$location,$sce) {
+      $scope.index= Math.floor((Math.random()*4)+1);
+      $scope.getNextRecord = function(){
+        console.log($scope.index);
+        var promise = records.getNextRecord($scope.index);
+        promise.then(
+          function(payload) {
+            $scope.text = $sce.trustAsHtml(payload.data.record);
+            console.log(payload);
+          },  
+          function(errorPayload) {
+            console.log('failure loading '+errorPayload);
+          }); 
+        $scope.index =  $scope.index + 1;
+
+      };
+      $scope.getNextRecord();
+      $scope.text = $sce.trustAsHtml("Keep an eye on this space for interesing records");
   });
 
