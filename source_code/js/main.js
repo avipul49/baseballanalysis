@@ -6,6 +6,7 @@ var baseball_main = angular.module('baseball_main', [
   'filter_module',
   'isteven-multi-select',
   'widget_module',
+  'manager_controller',
   'team_tendency_module']);
 
 baseball_main.config(['$routeProvider',

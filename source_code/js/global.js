@@ -21,6 +21,9 @@ var global = {
 		salaries:{
 			players : "getPlayerSalaries",
 			playerSalaries: "getPlayerSalariesOverTheYears"
+		},
+		managers:{
+			manager_age_maturity : "getManagerAgeMaturity",
 		}
 	},
 	charts_loaded:false,
