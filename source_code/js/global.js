@@ -48,7 +48,6 @@ var global = {
 		{icon:'<img src="images/team_logos/Cincinnati_Reds_Logo.svg"/>',teamId:'CIN',	lgId:'NL',	name:'Cincinnati Reds'},
 		{icon:'<img src="images/team_logos/St._Louis_Cardinals_Logo.svg"/>',teamId:'SLN',	lgId:'NL',	name:'St. Louis Cardinals'},
 		{icon:'<img src="images/team_logos/Seattle_Mariners_logo.svg"/>',teamId:'SEA',	lgId:'AL',	name:'Seattle Mariners'},
-		{icon:'<img src="images/team_logos/Houston_Astros_Logo.svg"/>',teamId:'HOU',	lgId:'AL',	name:'Houston Astros'},
 		{icon:'<img src="images/team_logos/CHA.svg"/>', teamId:'CHN',	lgId:'NL',	name:'Chicago White Sox'},
 		{icon:'<img src="images/team_logos/CHA.svg"/>',teamId:'ANA',	lgId:'AL',	name:'Anaheim Angels'},
 		{icon:'<img src="images/team_logos/San_Francisco_Giants_Logo.svg"/>',teamId:'SFN',	lgId:'NL',	name:'San Francisco Giants'},

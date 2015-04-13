@@ -83,7 +83,7 @@ salariesControllers.controller('manager_salaries_controller',
                         ];
 
       $scope.field = 'yearId';
-      $scope.title='Player salaries';
+      $scope.title='Manager salaries';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
         $scope.field = field;

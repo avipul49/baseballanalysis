@@ -108,7 +108,7 @@
 
 /* helper buttons (select all, none, reset); */
 .multiSelect .helperButton {
-    display: inline;
+    display: none;
     text-align: center;
     cursor: pointer;
     border: 1px solid #ccc;

@@ -22,6 +22,11 @@ team_module.config(['$routeProvider',
         templateUrl: 'html/widget.html',
         controller : 'team_fielding_controller',
         reloadOnSearch: false
+      }).
+      when('/fan_following', {
+        templateUrl: 'html/widget.html',
+        controller : 'fan_following_controller',
+        reloadOnSearch: false
       })
       // when('/school', {
       //   templateUrl: 'html/salaries.html'
@@ -131,24 +136,46 @@ team_module.controller('team_pitching_controller',
 
   team_module.controller('team_orientation_controller', 
     function($log, $scope, performance,$location) {
-      $scope.categories = [];
-      $scope.fields = [{field:1,label:'Stats'},{field:2,label:'Ranks'}];
+      $scope.categories = [{link:'team_win_loss',label:'Win/loss'},
+                          {link:'team_batting',label:'Batting',active:true},
+                          {link:'team_fielding',label:'Fielding'},
+                          {link:'team_pitching',label:'Pitching'}];
+      $scope.fields = [{field:'runsScored',label:'Run Scored',active:true},
+                          {field:'atBats',label:'At Bats'},
+                          {field:'hits',label:'Hits'},
+                          {field:'homeruns',label:'Homeruns'},
+                          {field:'strikeOuts',label:'Strikeouts'},
+                          {field:'caughtStealing',label:'Caught Stealing'}
+                        ];
 
-      $scope.field = 1;
-      $scope.title = 'Team orientation';
+      $scope.field = 'runsScored';
+      $scope.title = 'Team batting performance';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        var field1 = field == 1? 'runs':'battingRank';
-        var field2 = field == 1? 'out' : 'pitchingRank';
-        var label1 = field == 1? 'Runs':'Batting Rank';
-        var label2 = field == 1? 'Outs' : 'Pitching Rank';
-        
-        $scope.data = parseTeamOrientationData(payload,selectedTeams,field1,field2,label1,label2);
+        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
       };
-      $scope.fetchDataService = performance.getTeamOrientation;
+      $scope.fetchDataService = performance.getTeamPerformances;
       $scope.drawChart = function(){
         console.log($scope.data);
-        var subTitle = $scope.field == 1? 'Batting and Pitching stats in selected year span':'Batting and Pitching rank in selected year span';
-        drawBarChart($scope.data,'chart_div',$scope.title,subTitle);
-        drawTableWithArray($scope.data,'table_div');
+        drawLineChart($scope.data,'chart_div',$scope.title);
+        drawTable($scope.data,'table_div');
+      }
+  });
+
+
+  team_module.controller('fan_following_controller', 
+    function($log, $scope, performance,$location) {
+      $scope.categories = [];
+      $scope.fields = [];
+
+      $scope.field = 'attendance';
+      $scope.title = 'Fan following';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+      };
+      $scope.fetchDataService = performance.getTeamPerformances;
+      $scope.drawChart = function(){
+        console.log($scope.data);
+        drawLineChart($scope.data,'chart_div',$scope.title);
+        drawTable($scope.data,'table_div');
       }
   });
