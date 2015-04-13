@@ -9,20 +9,29 @@ function getTeamIds(teams){
     return teamids;
 }
 
+function callService($scope,key,selection){
+  var promise = $scope.fetchDataService(key,$scope.startYear,$scope.endYear);
+  promise.then(
+  function(payload) { 
+    $scope.onSelectionChange(payload,$scope[selection],$scope.startYear,$scope.endYear);        
+  },
+  function(errorPayload) {
+      console.log('failure loading '+errorPayload);
+  }); 
+}
+
 function fetchData($scope,$location){
   global.query = $location.search();
-  if($scope.selectedTeams[0]){
-    var teamids = getTeamIds($scope.selectedTeams);
-    var promise = $scope.fetchDataService(teamids,$scope.startYear,$scope.endYear);
-    promise.then(
-    function(payload) { 
-      $scope.onSelectionChange(payload,$scope.selectedTeams,$scope.startYear,$scope.endYear);        
-    },
-    function(errorPayload) {
-        console.log('failure loading '+errorPayload);
-    }); 
-    console.log($scope.selectedLeagues);
+
+  if($scope.fetchSearchDataService){
+    callService($scope,global.query.playerid,'selectedPlayers')
+  }else{
+    if($scope.selectedTeams[0]){
+      var teamids = getTeamIds($scope.selectedTeams);
+      callService($scope,teamids,'selectedTeams')
+    }
   }
+
 };
 
 filterModule.directive('myRepeatDirective', function() {
@@ -134,6 +143,7 @@ filterModule.controller('year_filter_controller',
 filterModule.controller('person_filter_controller', 
   function($scope,$location,$timeout) {
     $scope.loading = false;
+    
     $scope.onSearchChange = function(data){
       if(!$scope.loading && data.keyword.length>=3){
         $scope.loading = true;
@@ -156,21 +166,17 @@ filterModule.controller('person_filter_controller',
         var playerid = $scope.selectedPlayers[0].playerId;
         $location.search().playerid = playerid;
         global.query = $location.search();
-        var promise = $scope.fetchDataService(playerid,$scope.startYear,$scope.endYear);
-
-        promise.then(
-        function(payload) { 
-          $scope.onSelectionChange(payload,$scope.selectedPlayers,$scope.startYear,$scope.endYear);        
-        },
-        function(errorPayload) {
-            console.log('failure loading '+errorPayload);
-        }); 
-        console.log($scope.selectedPlayers);
+        callService($scope,playerid,'selectedPlayers');
     }
     var query = $location.search();
     if(query.playerid){
       $scope.selectedPlayers = [];
       $scope.selectedPlayers.push(query.playerid);
       //$scope.onChange();
+    }
+    if($location.search().playerid){
+      $scope.selectedPlayerId = $location.search().playerid;
+      $scope.selectedPlayers = [{playerId:$scope.selectedPlayerId}];
+      $scope.onChange();
     }
   });

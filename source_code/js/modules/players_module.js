@@ -18,16 +18,6 @@ playersControllers.config(['$routeProvider',
         controller : 'player_origin_city',
         reloadOnSearch: false
       }).
-      when('/physical_attributes_weight', {
-        templateUrl: 'html/widget.html',
-        controller : 'player_weight_group_controller',
-        reloadOnSearch: false
-      }).
-      when('/physical_attributes_height', {
-        templateUrl: 'html/widget.html',
-        controller : 'player_height_group_controller',
-        reloadOnSearch: false
-      }).
       when('/physical_attributes_batting_weight', {
         templateUrl: 'html/widget.html',
         controller : 'player_batting_weight_group_controller',
@@ -46,6 +36,16 @@ playersControllers.config(['$routeProvider',
       when('/physical_attributes_pitching_height', {
         templateUrl: 'html/widget.html',
         controller : 'player_pitching_height_group_controller',
+        reloadOnSearch: false
+      }).
+      when('/batting_manager_team', {
+        templateUrl: 'html/widget.html',
+        controller : 'batting_manager_team_controller',
+        reloadOnSearch: false
+      }).
+      when('/pitching_manager_team', {
+        templateUrl: 'html/widget.html',
+        controller : 'pitching_manager_team_controller',
         reloadOnSearch: false
       })
       // .
@@ -196,6 +196,58 @@ playersControllers.controller('player_pitching_height_group_controller',
       $scope.drawChart = function(){
         console.log($scope.data);
         drawBarChart($scope.data,'chart_div',$scope.title,'');
+        drawTableWithArray($scope.data,'table_div');
+      }
+  });
+
+playersControllers.controller('batting_manager_team_controller', 
+    function($log, $scope, origin, $location) {
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = origin.searchBatter;
+      $scope.categories = [{link:'batting_manager_team',label:'Batting',active:true},
+                          {link:'pitching_manager_team',label:'Pitching'}];
+      $scope.fields = [{field:'yearId',label:'Year',active:true},
+                        {field:'teamId',label:'Teams'},
+                        {field:'managerName',label:'Manager'}
+                        ];
+
+      $scope.field = 'yearId';
+      $scope.title='Batting performance';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        console.log(payload);
+        $scope.field = field;
+        $scope.data = parseBattingManagerTeamData(payload,$scope.field,'runs','homeRuns','Runs','Homeruns');
+      };
+
+      $scope.fetchDataService = origin.getBattingManagerTeamDetails;
+      $scope.drawChart = function(){
+        drawBarChart($scope.data,'chart_div',$scope.title,'','vertical');
+        drawTableWithArray($scope.data,'table_div');
+      }
+  });
+
+playersControllers.controller('pitching_manager_team_controller', 
+    function($log, $scope, origin, $location) {
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = origin.searchPitcher;
+      $scope.categories = [{link:'batting_manager_team',label:'Batting'},
+                          {link:'pitching_manager_team',label:'Pitching',active:true}];
+      $scope.fields = [{field:'yearId',label:'Year',active:true},
+                        {field:'teamId',label:'Teams'},
+                        {field:'managerName',label:'Manager'}
+                        ];
+
+      $scope.field = 'yearId';
+      $scope.title='Batting performance';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        console.log(payload);
+        $scope.field = field;
+        $scope.data = parseBattingManagerTeamData(payload,$scope.field,'strikeouts','shutouts','Strikeouts','Shutouts');
+      };
+
+      $scope.fetchDataService = origin.getPitchingManagerTeamDetails;
+      $scope.drawChart = function(){
+        drawBarChart($scope.data,'chart_div',$scope.title,'','vertical');
         drawTableWithArray($scope.data,'table_div');
       }
   });

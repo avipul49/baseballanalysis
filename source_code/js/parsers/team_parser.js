@@ -118,3 +118,16 @@ function parsePlayerAttributeData(payload,group,field,label){
   }
   return finalData;
  }
+
+
+ function parseBattingManagerTeamData(payload,field,field1,field2,label1,label2){
+  var finalData = [];
+  var cols = [field,label1,label2];
+  finalData.push(cols);
+  var teams = payload.data;
+  for(var team in teams){
+    var currentTeam = teams[team];
+    finalData.push([''+currentTeam[field],currentTeam[field1],currentTeam[field2]]);
+  }
+  return finalData;
+}

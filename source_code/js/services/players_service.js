@@ -47,6 +47,26 @@ players_service.factory('origin', function($http) {
         var promise = $http.get(global.end_points.base_url+global.end_points.players.pitching_height_group+
           '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
         return promise; 
+      },
+      searchBatter: function(key,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.searchBatter+
+          '?key='+key+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
+      },
+      searchPitcher: function(key,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.searchPitcher+
+          '?key='+key+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
+      },
+      getBattingManagerTeamDetails: function(playerid,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.getBattingManagerTeamDetails+
+          '?playerid='+playerid+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
+      },
+      getPitchingManagerTeamDetails: function(playerid,startYear,endYear){
+        var promise = $http.get(global.end_points.base_url+global.end_points.players.getPitchingManagerTeamDetails+
+          '?playerid='+playerid+'&startYear='+startYear+'&endYear='+endYear);
+        return promise; 
       }
 
     }
