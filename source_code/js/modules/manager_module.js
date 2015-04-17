@@ -18,7 +18,7 @@ managerControllers.controller('manager_age_perf_controller',
                           {field:1,label:'Losses'},
                           {field:2,label:'Games Managed'}];
 
-      $scope.field = 0;
+      $scope.field = 0
       $scope.title='Manager Age vs Performance';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
