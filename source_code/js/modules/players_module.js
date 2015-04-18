@@ -47,6 +47,11 @@ playersControllers.config(['$routeProvider',
         templateUrl: 'html/widget.html',
         controller : 'pitching_manager_team_controller',
         reloadOnSearch: false
+      }).
+      when('/player_experiance', {
+        templateUrl: 'html/widget.html',
+        controller : 'player_experiance_controller',
+        reloadOnSearch: false
       })
       // .
       // when('/city', {
@@ -248,6 +253,21 @@ playersControllers.controller('pitching_manager_team_controller',
       $scope.fetchDataService = origin.getPitchingManagerTeamDetails;
       $scope.drawChart = function(){
         drawBarChart($scope.data,'chart_div',$scope.title,'','vertical');
+        drawTableWithArray($scope.data,'table_div');
+      }
+  });
+
+playersControllers.controller('player_experiance_controller', 
+    function($log, $scope, origin,$location) {
+      $scope.fields = [];
+      $scope.title = 'Age and Experience';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parsePlayerOriginData(payload,'Age');
+      };
+      $scope.fetchDataService = origin.getPlayAgeAndExperiance;
+      $scope.drawChart = function(){
+        console.log($scope.data);
+        drawMapWithArray($scope.data,'chart_div',$scope.title);
         drawTableWithArray($scope.data,'table_div');
       }
   });

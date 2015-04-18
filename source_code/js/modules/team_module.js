@@ -27,6 +27,16 @@ team_module.config(['$routeProvider',
         templateUrl: 'html/widget.html',
         controller : 'fan_following_controller',
         reloadOnSearch: false
+      }).
+      when('/team_award', {
+        templateUrl: 'html/widget.html',
+        controller : 'team_award_controller',
+        reloadOnSearch: false
+      }).
+      when('/age_group', {
+        templateUrl: 'html/widget.html',
+        controller : 'age_group_controller',
+        reloadOnSearch: false
       })
       // when('/school', {
       //   templateUrl: 'html/salaries.html'
@@ -173,6 +183,42 @@ team_module.controller('team_pitching_controller',
         $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
       };
       $scope.fetchDataService = performance.getTeamPerformances;
+      $scope.drawChart = function(){
+        console.log($scope.data);
+        drawLineChart($scope.data,'chart_div',$scope.title);
+        drawTable($scope.data,'table_div');
+      }
+  });
+
+  team_module.controller('team_award_controller', 
+    function($log, $scope, performance,$location) {
+      $scope.categories = [];
+      $scope.fields = [];
+
+      $scope.field = 'awards';
+      $scope.title = 'Achievement/Awards';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+      };
+      $scope.fetchDataService = performance.getTeamAchAward;
+      $scope.drawChart = function(){
+        console.log($scope.data);
+        drawLineChart($scope.data,'chart_div',$scope.title);
+        drawTable($scope.data,'table_div');
+      }
+  });
+
+  team_module.controller('age_group_controller', 
+    function($log, $scope, performance,$location) {
+      $scope.categories = [];
+      $scope.fields = [];
+
+      $scope.field = 'awards';
+      $scope.title = 'Player Age Group';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+      };
+      $scope.fetchDataService = performance.getTeamPlayerAgeGroup;
       $scope.drawChart = function(){
         console.log($scope.data);
         drawLineChart($scope.data,'chart_div',$scope.title);

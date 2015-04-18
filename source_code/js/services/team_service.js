@@ -16,6 +16,16 @@ team_service.factory('performance', function($http) {
       	var promise = $http.get(global.end_points.base_url+global.end_points.teams.playing_style+
           '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
         return promise;
+      },
+      getTeamAchAward:function(teams,startYear,endYear) {
+        var promise = $http.get(global.end_points.base_url+global.end_points.teams.getTeamAchievementAward+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+        return promise;
+      },
+      getTeamPlayerAgeGroup:function(teams,startYear,endYear) {
+        var promise = $http.get(global.end_points.base_url+global.end_points.teams.getTeamAgeGroup+
+          '?teams='+teams+'&startYear='+startYear+'&endYear='+endYear);
+        return promise;
       }
     }
   });

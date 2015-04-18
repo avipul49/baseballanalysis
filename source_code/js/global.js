@@ -7,7 +7,9 @@ var global = {
 		teams:{
 			performance:"getTeamPerformance",
 			orientation:"getTeamOrientation",
-			playing_style:"getTeamPlayingStyle"
+			playing_style:"getTeamPlayingStyle",
+			getTeamAchievementAward:"getTeamAchievementAward",
+			getTeamAgeGroup:"getTeamAgeGroup"
 		},
 		players:{
 			origin : "getPlayerOrigin",
@@ -21,7 +23,8 @@ var global = {
 			searchBatter : "searchBatter",
 			searchPitcher : "searchPitcher",
 			getBattingManagerTeamDetails : "getBattingManagerTeamDetails",
-			getPitchingManagerTeamDetails : "getPitchingManagerTeamDetails"
+			getPitchingManagerTeamDetails : "getPitchingManagerTeamDetails",
+			getPlayerAgeAndExperiance: "getPlayerAgeAndExperiance"
 		},
 		salaries:{
 			players : "getPlayerSalaries",
@@ -29,6 +32,10 @@ var global = {
 		},
 		managers:{
 			manager_age_maturity : "getManagerAgeMaturity",
+			getManagerMaturityAwards : "getManagerMaturityAwards",
+			getManagerLoyalty : "getManagerLoyalty",
+			getManagerTeamPerformace : "getManagerTeamPerformace",
+			getPlayerManager : "getPlayerManager"
 		}
 	},
 	charts_loaded:false,
