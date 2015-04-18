@@ -119,6 +119,18 @@ function parsePlayerAttributeData(payload,group,field,label){
   return finalData;
  }
 
+ function parsePlayerAttributeDataWins(payload,group,field,label){
+  
+  var playerOrigin = payload.data;
+  var finalData = [];
+  finalData.push([group,label]);
+  for(var origin in playerOrigin){
+    var currentOrigin = playerOrigin[origin];
+    finalData.push([currentOrigin.name,currentOrigin.values[field]]);
+  }
+  return finalData;
+ }
+
 
  function parseBattingManagerTeamData(payload,field,field1,field2,label1,label2){
   var finalData = [];

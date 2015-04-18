@@ -106,7 +106,7 @@ managerControllers.controller('manager_loyalty_controller',
       $scope.title='Manager Loyalty for Team';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
-        $scope.data = parsePlayerAttributeData(payload,'Loyalty',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Team Name',field,'Number of years');
       };
       $scope.fetchDataService = manager.getManLoyalty;
       $scope.drawChart = function(){
@@ -123,18 +123,19 @@ managerControllers.controller('manager_team_winloss_controller',
                           {link:'manager_team_batting',label:'Batting'},
                           {link:'manager_team_fielding',label:'Fielding'},
                           {link:'manager_team_pitching',label:'Pitching'}];
-      $scope.fields = [{field:'wins',label:'Wins',active:true},
-                          {field:'losses',label:'Losses'},
-                          {field:'gamesPlayed',label:'Games played'}];
+      $scope.fields = [{field:1,label:'Wins',active:true},
+                          {field:2,label:'Losses'},
+                          {field:0,label:'Games played'}];
 
-      $scope.field = 'wins';
+      $scope.field = 1;
       $scope.title='Team Performance under Manager';
 
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,$scope.fields[$scope.field].label);
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
-      $scope.drawChart = function(){
+    
+       $scope.drawChart = function(){
         console.log($scope.data);
         drawBarChart($scope.data,'chart_div',$scope.title,'');
         drawTableWithArray($scope.data,'table_div');
@@ -148,21 +149,22 @@ managerControllers.controller('manager_team_batting_controller',
                           {link:'manager_team_batting',label:'Batting',active:true},
                           {link:'manager_team_fielding',label:'Fielding'},
                           {link:'manager_team_pitching',label:'Pitching'}];
-      $scope.fields = [{field:'runsScored',label:'Run Scored',active:true},
-                          {field:'atBats',label:'At Bats'},
-                          {field:'hits',label:'Hits'},
-                          {field:'homeruns',label:'Homeruns'},
-                          {field:'strikeOuts',label:'Strikeouts'},
-                          {field:'caughtStealing',label:'Caught Stealing'}
+      $scope.fields = [{field:3,label:'Run Scored',active:true},
+                          {field:4,label:'At Bats'},
+                          {field:5,label:'Hits'},
+                          {field:6,label:'Homeruns'},
+                          {field:7,label:'Strikeouts'},
+                          {field:8,label:'Caught Stealing'}
                         ];
 
-      $scope.field = 'runsScored';
+      $scope.field = 3;
       $scope.title='Team Batting Performance under Manager';
-      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,$scope.fields[$scope.field].label);
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
-      $scope.drawChart = function(){
+    
+       $scope.drawChart = function(){
         console.log($scope.data);
         drawBarChart($scope.data,'chart_div',$scope.title,'');
         drawTableWithArray($scope.data,'table_div');
@@ -178,13 +180,14 @@ managerControllers.controller('manager_team_fielding_controller',
                           {link:'manager_team_pitching',label:'Pitching'}];
        $scope.fields = [];
 
-      $scope.field = 'fieldingPercentage';
+      $scope.field = 14;
       $scope.title='Team Fielding Performance under Manager';
-      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,'Fielding');
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
-      $scope.drawChart = function(){
+    
+       $scope.drawChart = function(){
         console.log($scope.data);
         drawBarChart($scope.data,'chart_div',$scope.title,'');
         drawTableWithArray($scope.data,'table_div');
@@ -199,21 +202,22 @@ managerControllers.controller('manager_team_pitching_controller',
                           {link:'manager_team_fielding',label:'Fielding'},
                           {link:'manager_team_pitching',label:'Pitching',active:true}];
 
-      $scope.fields = [{field:'runsAllowed',label:'Run Allowed',active:true},
-                          {field:'completeGames',label:'Complete Games'},
-                          {field:'shutouts',label:'Shutouts'},
-                          {field:'hitsAllowed',label:'Hits Allowed'},
-                          {field:'homerunsAllowed',label:'Homeruns Allowed'}
+      $scope.fields = [{field:9,label:'Run Allowed',active:true},
+                          {field:10,label:'Completed Games'},
+                          {field:11,label:'Shutouts'},
+                          {field:12,label:'Hits Allowed'},
+                          {field:13,label:'Homeruns Allowed'}
                         ];
 
-      $scope.field = 'runsAllowed';
+      $scope.field = 9;
 
       $scope.title='Team Pitching Performance under Manager';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,'Performance');
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
-      $scope.drawChart = function(){
+    
+       $scope.drawChart = function(){
         console.log($scope.data);
         drawBarChart($scope.data,'chart_div',$scope.title,'');
         drawTableWithArray($scope.data,'table_div');
