@@ -64,15 +64,12 @@ managerControllers.controller('manager_age_perf_controller',
     function($log, $scope, manager, $location) {
       $scope.categories = [{link:'manager_win_loss',label:'Win/Loss',active:true},
                           {link:'award_achievements',label:'Awards & Achievements'}];
-      $scope.fields = [{field:0,label:'Wins',active:true},
-                          {field:1,label:'Losses'},
-                          {field:2,label:'Games Managed'}];
 
       $scope.field = 0
       $scope.title='Manager Age vs Performance';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
-        $scope.data = parsePlayerAttributeData(payload,'Age Group',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Awards & Achievements');
       };
       $scope.fetchDataService = manager.getManagerAgeMaturity;
       $scope.drawChart = function(){
@@ -84,15 +81,13 @@ managerControllers.controller('manager_age_perf_controller',
 
 managerControllers.controller('award_achievements_controller', 
     function($log, $scope, manager, $location) {
-      $scope.categories = [{link:'manager_win_loss',label:'Win/Loss',active:true},
-                          {link:'award_achievements',label:'Awards/Achievements'}];
-      $scope.fields = [{field:0,label:'Awards/Achievements',active:true}];
-
-      $scope.field = 0
-      $scope.title='Manager Age vs Awards/Achievements';
+      $scope.categories = [{link:'manager_win_loss',label:'Win/Loss'},
+                          {link:'award_achievements',label:'Awards/Achievements',active:true}];
+      
+      $scope.title='Manager Age and Awards/Achievements';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
-        $scope.data = parsePlayerAttributeData(payload,'Awards',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Awards/Achievements',0,'Total Awards');
       };
       $scope.fetchDataService = manager.getManMaturityAwards;
       $scope.drawChart = function(){
