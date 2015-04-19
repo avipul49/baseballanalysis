@@ -195,7 +195,7 @@ team_module.controller('team_pitching_controller',
       $scope.categories = [];
       $scope.fields = [];
 
-      $scope.field = 'awards';
+      $scope.field = 'wins';
       $scope.title = 'Achievement/Awards';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
