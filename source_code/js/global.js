@@ -4,6 +4,7 @@ var global = {
 		player_search : "searchPlayer",
 		manager_search : "searchManager",
 		records : "getNextRecord",
+		database_details : "getDatabaseDetails",
 		teams:{
 			performance:"getTeamPerformance",
 			orientation:"getTeamOrientation",

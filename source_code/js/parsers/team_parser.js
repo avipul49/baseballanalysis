@@ -8,21 +8,26 @@ function parseTeamPerformanceData(payload,teams,startYear,endYear,field){
   var fetchedTeams = payload.data;
   var year = startYear;
   var allrows = []; 
-  var c = [];
-  c.push(new v(startYear));
-  for(var team in fetchedTeams){
-    var currentTeam = fetchedTeams[team];
-    if(year != currentTeam.yearId){
-      allrows.push(new rows(c));
-      c = [];
-      c.push(new v(currentTeam.yearId));
-      year = currentTeam.yearId;
+  for(var j = startYear;j<=endYear;j++){ 
+    c = [];
+    c.push(new v(j));
+    for(var team in teams){
+      var currentTeam = teams[team];
+      c.push(new v(searchField(fetchedTeams,j,field,currentTeam.teamId)));
     }
-    c.push(new v(currentTeam[field]));
+    allrows.push(new rows(c));
   }
-  allrows.push(new rows(c));
   var finalData = new graphData(cols,allrows);
   return finalData;
+}
+
+function searchField(fetchedTeams,year,field,teamId){
+  for(var team in fetchedTeams){
+    var currentTeam = fetchedTeams[team];
+    if(currentTeam.yearId == year && currentTeam.teamId == teamId)
+      return currentTeam[field];
+  }
+  return 0;
 }
 
 function parseSalaryData(payload){

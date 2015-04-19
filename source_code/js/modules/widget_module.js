@@ -45,8 +45,8 @@ team_module.controller('widget_controller',
   });
 
 team_module.controller('records_controller', 
-    function($log, $scope, records,$location,$sce) {
-      $scope.index= Math.floor((Math.random()*4)+1);
+    function($log, $scope, records,$location,$sce,$interval) {
+      $scope.index= Math.floor((Math.random()*100)+1);
       $scope.getNextRecord = function(){
         console.log($scope.index);
         var promise = records.getNextRecord($scope.index);
@@ -63,5 +63,9 @@ team_module.controller('records_controller',
       };
       $scope.getNextRecord();
       $scope.text = $sce.trustAsHtml("Keep an eye on this space for interesing records");
+
+      $scope.stop = $interval(function() {
+            $scope.getNextRecord();
+          }, 10000);
   });
 
