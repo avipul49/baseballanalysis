@@ -66,8 +66,8 @@ team_module.controller('records_controller',
       $scope.getNextRecord();
       $scope.text = $sce.trustAsHtml("Keep an eye on this space for interesing records");
 
-      $scope.stop = $interval(function() {
-            $scope.getNextRecord();
-          }, 30000);
+      // $scope.stop = $interval(function() {
+      //       $scope.getNextRecord();
+      //     }, 30000);
   });
 

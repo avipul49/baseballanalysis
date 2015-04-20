@@ -95,9 +95,9 @@ filterModule.controller('team_filter_controller',
       $scope.selectedTeams = teams;
       fetchData($scope,$location);
     }
-    $scope.$watch($scope.selectedTeams,function(){
-      $scope.onChange($scope.selectedTeams);
-    });
+    // $scope.$watch($scope.selectedTeams,function(){
+    //   $scope.onChange($scope.selectedTeams);
+    // });
     $scope.onLeagueChange();
     //$scope.onChange($scope.selectedTeams);
   });
@@ -105,7 +105,7 @@ filterModule.controller('year_filter_controller',
   function($scope,$location) {
     
       $scope.startYearRange = [];
-      for(var i=2014;i>1960;i--) {
+      for(var i=2014;i>=1980;i--) {
         $scope.startYearRange.push(i);
       }
       $scope.endYearRange = [2014];
