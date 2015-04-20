@@ -10,12 +10,15 @@ function getTeamIds(teams){
 }
 
 function callService($scope,key,selection){
+  global.showLoading = true;
   var promise = $scope.fetchDataService(key,$scope.startYear,$scope.endYear);
   promise.then(
   function(payload) { 
+    global.showLoading = false;
     $scope.onSelectionChange(payload,$scope[selection],$scope.startYear,$scope.endYear);        
   },
   function(errorPayload) {
+      global.showLoading = false;
       console.log('failure loading '+errorPayload);
   }); 
 }

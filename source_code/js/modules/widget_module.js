@@ -2,6 +2,8 @@ var team_module = angular.module('widget_module', ["team_service","records_servi
 
 team_module.controller('widget_controller', 
     function($log, $scope, performance,$location) {
+      $scope.global = global;
+      $scope.showLoading = false;
       if(!$scope.selector){
         $scope.selector = 'team';
       }
@@ -66,6 +68,6 @@ team_module.controller('records_controller',
 
       $scope.stop = $interval(function() {
             $scope.getNextRecord();
-          }, 10000);
+          }, 30000);
   });
 
