@@ -195,16 +195,16 @@ team_module.controller('team_pitching_controller',
       $scope.categories = [];
       $scope.fields = [];
 
-      $scope.field = 'wins';
+      $scope.field = 0;
       $scope.title = 'Achievement/Awards';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+        $scope.data = parsePlayerAttributeData(payload,'Awards/Achievements',0,'Total Awards');
       };
       $scope.fetchDataService = performance.getTeamAchAward;
       $scope.drawChart = function(){
         console.log($scope.data);
-        drawLineChart($scope.data,'chart_div',$scope.title);
-        drawTable($scope.data,'table_div');
+        drawBarChart($scope.data,'chart_div',$scope.title,'');
+        drawTableWithArray($scope.data,'table_div');
       }
   });
 
@@ -216,12 +216,12 @@ team_module.controller('team_pitching_controller',
       $scope.field = 'awards';
       $scope.title = 'Player Age Group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parseTeamPerformanceData(payload,selectedTeams,startYear,endYear,field);
+        $scope.data = parsePlayerAttributeData(payload,'Age Group',0,'Total');
       };
       $scope.fetchDataService = performance.getTeamPlayerAgeGroup;
       $scope.drawChart = function(){
         console.log($scope.data);
-        drawLineChart($scope.data,'chart_div',$scope.title);
-        drawTable($scope.data,'table_div');
+        drawBarChart($scope.data,'chart_div',$scope.title,'');
+        drawTableWithArray($scope.data,'table_div');
       }
   });

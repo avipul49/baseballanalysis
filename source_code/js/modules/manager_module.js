@@ -101,7 +101,8 @@ managerControllers.controller('manager_loyalty_controller',
     function($log, $scope, manager, $location) {
       $scope.categories = [{link:'manager_loyalty',label:'Loyalty for a Team',active:true}];
      
-
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = manager.searchManager;
       $scope.field = 0
       $scope.title='Manager Loyalty for Team';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
@@ -118,7 +119,8 @@ managerControllers.controller('manager_loyalty_controller',
 
 managerControllers.controller('manager_team_winloss_controller', 
     function($log, $scope, manager, $location) {
-
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = manager.searchManager;
       $scope.categories = [{link:'manager_team_winloss',label:'Win/loss',active:true},
                           {link:'manager_team_batting',label:'Batting'},
                           {link:'manager_team_fielding',label:'Fielding'},
@@ -144,7 +146,8 @@ managerControllers.controller('manager_team_winloss_controller',
 
 managerControllers.controller('manager_team_batting_controller', 
     function($log, $scope, manager, $location) {
-
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = manager.searchBatter;
       $scope.categories = [{link:'manager_team_winloss',label:'Win/loss'},
                           {link:'manager_team_batting',label:'Batting',active:true},
                           {link:'manager_team_fielding',label:'Fielding'},
@@ -173,7 +176,8 @@ managerControllers.controller('manager_team_batting_controller',
 
 managerControllers.controller('manager_team_fielding_controller', 
     function($log, $scope, manager, $location) {
-
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = manager.searchBatter;
       $scope.categories = [{link:'manager_team_winloss',label:'Win/loss'},
                           {link:'manager_team_batting',label:'Batting'},
                           {link:'manager_team_fielding',label:'Fielding',active:true},
@@ -196,7 +200,8 @@ managerControllers.controller('manager_team_fielding_controller',
 
 managerControllers.controller('manager_team_pitching_controller', 
     function($log, $scope, manager, $location) {
-
+      $scope.selector = 'person'
+      $scope.fetchSearchDataService = manager.searchBatter;
       $scope.categories = [{link:'manager_team_winloss',label:'Win/loss'},
                           {link:'manager_team_batting',label:'Batting'},
                           {link:'manager_team_fielding',label:'Fielding'},

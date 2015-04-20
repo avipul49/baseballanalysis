@@ -25,7 +25,8 @@ var global = {
 			searchPitcher : "searchPitcher",
 			getBattingManagerTeamDetails : "getBattingManagerTeamDetails",
 			getPitchingManagerTeamDetails : "getPitchingManagerTeamDetails",
-			getPlayerAgeAndExperiance: "getPlayerAgeAndExperiance"
+			getPlayerAgeAndExperiance: "getPlayerAgeAndExperiance",
+			getPlayerAgeAndExperiancePit: "getPlayerAgeAndExperiancePit"
 		},
 		salaries:{
 			players : "getPlayerSalaries",

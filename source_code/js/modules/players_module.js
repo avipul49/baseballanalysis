@@ -52,7 +52,13 @@ playersControllers.config(['$routeProvider',
         templateUrl: 'html/widget.html',
         controller : 'player_experiance_controller',
         reloadOnSearch: false
+      }).
+      when('/player_experiance_pit', {
+        templateUrl: 'html/widget.html',
+        controller : 'player_experiance_pit_controller',
+        reloadOnSearch: false
       })
+
       // .
       // when('/city', {
       //   templateUrl: 'html/players.html'
@@ -259,15 +265,47 @@ playersControllers.controller('pitching_manager_team_controller',
 
 playersControllers.controller('player_experiance_controller', 
     function($log, $scope, origin,$location) {
-      $scope.fields = [];
+       $scope.categories = [{link:'player_experiance',label:'Batting',active:true},
+                          {link:'player_experiance_pit',label:'Pitching'}];
+       $scope.fields = [{field:0,label:'Run Scored',active:true},
+                          {field:1,label:'At Bats'},
+                          {field:2,label:'Hits'},
+                          {field:3,label:'Homeruns'},
+                          {field:4,label:'Strikeouts'},
+                          {field:5,label:'Caught Stealing'}
+                        ];
+      $scope.field=0;
       $scope.title = 'Age and Experience';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerOriginData(payload,'Age');
+       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Total');
       };
       $scope.fetchDataService = origin.getPlayAgeAndExperiance;
       $scope.drawChart = function(){
-        console.log($scope.data);
-        drawMapWithArray($scope.data,'chart_div',$scope.title);
+         console.log($scope.data);
+        drawBarChart($scope.data,'chart_div',$scope.title,'');
+        drawTableWithArray($scope.data,'table_div');
+      }
+  });
+
+playersControllers.controller('player_experiance_pit_controller', 
+    function($log, $scope, origin,$location) {
+       $scope.categories = [{link:'player_experiance',label:'Batting'},
+                          {link:'player_experiance_pit',label:'Pitching',active:true}];
+       $scope.fields = [{field:0,label:'Run Allowed',active:true},
+                          {field:1,label:'Complete Games'},
+                          {field:2,label:'Shutouts'},
+                          {field:3,label:'Homeruns Allowed'}
+                        ];
+
+      $scope.field=0;
+      $scope.title = 'Age and Experience';
+      $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
+       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Total');
+      };
+      $scope.fetchDataService = origin.getPlayAgeAndExperiancePit;
+      $scope.drawChart = function(){
+         console.log($scope.data);
+        drawBarChart($scope.data,'chart_div',$scope.title,'');
         drawTableWithArray($scope.data,'table_div');
       }
   });

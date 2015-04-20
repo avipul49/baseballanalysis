@@ -17,6 +17,11 @@ manager_service.factory('manager', function($http) {
           '?manager='+manager+'&startYear='+startYear+'&endYear='+endYear);
         return promise;
       },
+      searchManager: function(key,startYear,endYear) {
+        var promise = $http.get(global.end_points.base_url+global.end_points.manager_search+
+          '?key='+key+'&startYear='+startYear+'&endYear='+endYear);
+        return promise;
+      },
       getManTeamPerformace: function(manager,startYear,endYear) {
       	var promise = $http.get(global.end_points.base_url+global.end_points.managers.getManagerTeamPerformace+
           '?manager='+manager+'&startYear='+startYear+'&endYear='+endYear);
