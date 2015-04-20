@@ -277,7 +277,7 @@ playersControllers.controller('player_experiance_controller',
       $scope.field=0;
       $scope.title = 'Age and Experience';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Total');
+       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,$scope.fields[field]);
       };
       $scope.fetchDataService = origin.getPlayAgeAndExperiance;
       $scope.drawChart = function(){
@@ -300,7 +300,7 @@ playersControllers.controller('player_experiance_pit_controller',
       $scope.field=0;
       $scope.title = 'Age and Experience';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Total');
+       $scope.data = parsePlayerAttributeData(payload,'Age Group',field,$scope.fields[field]);
       };
       $scope.fetchDataService = origin.getPlayAgeAndExperiancePit;
       $scope.drawChart = function(){
