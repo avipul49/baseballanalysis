@@ -15,7 +15,9 @@ function callService($scope,key,selection){
   promise.then(
   function(payload) { 
     global.showLoading = false;
-    $scope.onSelectionChange(payload,$scope[selection],$scope.startYear,$scope.endYear);        
+    if(payload.data[0]){
+      $scope.onSelectionChange(payload,$scope[selection],$scope.startYear,$scope.endYear);  
+    }      
   },
   function(errorPayload) {
       global.showLoading = false;
@@ -179,6 +181,7 @@ filterModule.controller('person_filter_controller',
     }
     if($location.search().playerid){
       $scope.selectedPlayerId = $location.search().playerid;
+      $scope.players = [{playerId:$scope.selectedPlayerId}];
       $scope.selectedPlayers = [{playerId:$scope.selectedPlayerId}];
       $scope.onChange();
     }

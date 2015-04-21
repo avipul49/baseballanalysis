@@ -134,7 +134,7 @@ playersControllers.controller('player_batting_weight_group_controller',
       $scope.field = 0;
       $scope.title = 'Player weight group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeData(payload,'Weight',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Weight (lb)',field,$scope.fields[field].label);
       };
       $scope.fetchDataService = origin.getPlayerWeightGroup;
       $scope.drawChart = function(){
@@ -156,7 +156,7 @@ playersControllers.controller('player_batting_height_group_controller',
       $scope.field = 0;
       $scope.title = 'Player height group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeData(payload,'Height',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Height (in)',field,$scope.fields[field].label);
       };
       $scope.fetchDataService = origin.getPlayerHeightGroup;
       $scope.drawChart = function(){
@@ -179,7 +179,7 @@ playersControllers.controller('player_pitching_weight_group_controller',
       $scope.field = 0;
       $scope.title = 'Player weight group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeData(payload,'Weight',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Weight (lb)',field,$scope.fields[field].label);
       };
       $scope.fetchDataService = origin.getPlayerWeightGroup;
       $scope.drawChart = function(){
@@ -201,7 +201,7 @@ playersControllers.controller('player_pitching_height_group_controller',
       $scope.field = 0;
       $scope.title = 'Player height group';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeData(payload,'Height',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Height (in)',field,$scope.fields[field].label);
       };
       $scope.fetchDataService = origin.getPlayerHeightGroup;
       $scope.drawChart = function(){
