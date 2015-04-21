@@ -198,7 +198,7 @@ team_module.controller('team_pitching_controller',
       $scope.field = 0;
       $scope.title = 'Achievement/Awards';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeData(payload,'Awards/Achievements',0,'Total Awards');
+        $scope.data = parsePlayerAttributeData(payload,'Teams',0,'Total Awards');
       };
       $scope.fetchDataService = performance.getTeamAchAward;
       $scope.drawChart = function(){

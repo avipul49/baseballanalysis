@@ -30,8 +30,7 @@ salariesControllers.config(['$routeProvider',
 
 salariesControllers.controller('team_salaries_controller', 
     function($log, $scope, salary, $location) {
-      $scope.categories = [{link:'team_salary',label:'Players',active:true},
-                          {link:'salary_win_loss',label:'Win/loss'}];
+      $scope.categories = [{link:'team_salary',label:'Players',active:true}];
       $scope.fields = [];
 
       $scope.field = '';
@@ -51,8 +50,7 @@ salariesControllers.controller('player_salaries_controller',
     function($log, $scope, salary, $location) {
       $scope.selector = 'person'
       $scope.fetchSearchDataService = salary.searchPlayer;
-      $scope.categories = [{link:'player_salary', label:'Players', active: true},
-                          {link:'manager_salary', label:'Managers'}];
+      $scope.categories = [{link:'player_salary', label:'Players', active: true}];
       $scope.fields = [{field:'yearId',label:'Year',active:true},
                         {field:'teamId',label:'Teams'}
                         ];

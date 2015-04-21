@@ -64,12 +64,14 @@ managerControllers.controller('manager_age_perf_controller',
     function($log, $scope, manager, $location) {
       $scope.categories = [{link:'manager_win_loss',label:'Win/Loss',active:true},
                           {link:'award_achievements',label:'Awards & Achievements'}];
-
+      $scope.fields = [{field:0,label:'Wins',active:true},
+                          {field:1,label:'Losses'},
+                          {field:2,label:'Games Managed'}];
       $scope.field = 0
       $scope.title='Manager Age vs Performance';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
         console.log(payload);
-        $scope.data = parsePlayerAttributeData(payload,'Age Group',field,'Awards & Achievements');
+        $scope.data = parsePlayerAttributeData(payload,'Age Group',field,$scope.fields[field]);
       };
       $scope.fetchDataService = manager.getManagerAgeMaturity;
       $scope.drawChart = function(){
@@ -131,9 +133,8 @@ managerControllers.controller('manager_team_winloss_controller',
 
       $scope.field = 1;
       $scope.title='Team Performance under Manager';
-
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeData(payload,'Teams',field,'Win/Loss');
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
     
@@ -163,7 +164,7 @@ managerControllers.controller('manager_team_batting_controller',
       $scope.field = 3;
       $scope.title='Team Batting Performance under Manager';
        $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,$scope.fields[$scope.field].label);
+        $scope.data = parsePlayerAttributeDataWins(payload,'Teams',field,'Performance');
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
     
@@ -187,7 +188,7 @@ managerControllers.controller('manager_team_fielding_controller',
       $scope.field = 14;
       $scope.title='Team Fielding Performance under Manager';
        $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,'Fielding');
+        $scope.data = parsePlayerAttributeDataWins(payload,'Teams',field,'Fielding');
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
     
@@ -214,11 +215,11 @@ managerControllers.controller('manager_team_pitching_controller',
                           {field:13,label:'Homeruns Allowed'}
                         ];
 
-      $scope.field = 9;
+      $scope.field =9;
 
       $scope.title='Team Pitching Performance under Manager';
       $scope.parseData = function(payload,selectedTeams,startYear,endYear,field){
-        $scope.data = parsePlayerAttributeDataWins(payload,'Wins',field,'Performance');
+        $scope.data = parsePlayerAttributeDataWins(payload,'Teams',field,$scope.fields[field-9]);
       };
       $scope.fetchDataService = manager.getManTeamPerformace;
     
